@@ -1,0 +1,86 @@
+name: Build APK
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "**.md"
+      - "example-update.txt"
+  workflow_dispatch:
+
+# Same branch pushed twice quickly: stop the older build, keep the newest.
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write   # needed to create the Release
+
+env:
+  KEEP_RELEASES: 10  # how many old builds to keep under Releases
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check app JavaScript (syntax)
+        run: |
+          fail=0
+          while IFS= read -r f; do
+            node --check "$f" || { echo "::error file=$f::JavaScript syntax error"; fail=1; }
+          done < <(find app/src/main/assets/js -name '*.js')
+          exit $fail
+
+      - name: Read version from app/build.gradle
+        id: ver
+        run: |
+          name=$(grep -m1 -E 'versionName' app/build.gradle | sed -E 's/.*"([^"]+)".*/\1/')
+          echo "name=${name:-0}" >> "$GITHUB_OUTPUT"
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Setup Gradle (cache)
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build debug APK
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --stacktrace
+
+      - name: Name the APK
+        run: |
+          cp app/build/outputs/apk/debug/app-debug.apk "DataShow-v${{ steps.ver.outputs.name }}-b${{ github.run_number }}.apk"
+
+      - name: Upload APK (Artifacts)
+        uses: actions/upload-artifact@v4
+        with:
+          name: DataShow-apk
+          path: DataShow-v*.apk
+          retention-days: 30
+
+      - name: Publish to Releases
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "build-${{ github.run_number }}-${{ github.run_attempt }}" DataShow-v*.apk \
+            --title "Data Show v${{ steps.ver.outputs.name }} (build ${{ github.run_number }})" \
+            --notes "Commit: ${{ github.sha }}" \
+            --latest
+
+      - name: Delete old releases
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release list --limit 200 --json tagName --jq '.[].tagName' \
+            | tail -n +$((KEEP_RELEASES + 1)) \
+            | while read -r tag; do
+                gh release delete "$tag" --yes --cleanup-tag || true
+              done

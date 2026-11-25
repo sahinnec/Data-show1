@@ -1,0 +1,22 @@
+/* Floating calculator (js/app/calculator.js). Small movable window, never full screen, so the cards stay visible. */
+#dcalc{position:fixed;left:0;top:0;z-index:100010;width:252px;max-width:calc(100vw - 8px);display:none;flex-direction:column;background:var(--card,#fff);color:var(--tx,#1b2333);border:1px solid var(--bd,#dfe4ee);border-radius:16px;box-shadow:0 10px 34px rgba(0,0,0,.28);font-family:inherit;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;overflow:hidden}
+#dcalc.on{display:flex}
+#dcalc .ch{display:flex;align-items:center;gap:4px;padding:5px 6px 5px 10px;background:var(--thbg,#e9effb);cursor:grab;touch-action:none;font-size:.78rem;font-weight:700}
+#dcalc .ch span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#dcalc .ch button{width:28px;height:24px;padding:0;border:0;border-radius:8px;background:transparent;color:var(--tx,#1b2333);font-size:1rem;line-height:1;cursor:pointer}
+#dcalc .ch button:active{background:rgba(127,127,127,.25)}
+#dcalc .cd{padding:6px 10px 4px;text-align:right;min-height:58px;display:flex;flex-direction:column;justify-content:flex-end}
+#dcalc .ce{font-size:.82rem;color:var(--mut,#6b7488);line-height:1.25;max-height:3.8em;overflow-y:auto;overflow-wrap:anywhere;word-break:break-all;min-height:1.25em}
+#dcalc .cr{font-size:1.65rem;font-weight:700;line-height:1.15;overflow-x:auto;white-space:nowrap}
+#dcalc .cr.err{color:#c62828}
+#dcalc .ck{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding:4px 8px 6px}
+#dcalc .ck button{height:36px;padding:0;border:1px solid var(--bd,#dfe4ee);border-radius:10px;background:var(--bg,#f4f6fb);color:var(--tx,#1b2333);font-size:1rem;font-weight:600;touch-action:manipulation;cursor:pointer}
+#dcalc .ck button:active{filter:brightness(.88)}
+#dcalc .ck .op{background:color-mix(in srgb,var(--ac,#2563eb) 14%,var(--card,#fff));color:var(--ac,#2563eb)}
+#dcalc .ck .fn{color:#c62828}
+#dcalc .ck .eq{grid-column:1/-1;background:var(--ac,#2563eb);border-color:var(--ac,#2563eb);color:#fff;height:38px}
+#dcalc .ch2{padding:0 10px 7px;font-size:.66rem;color:var(--mut,#6b7488);text-align:center;line-height:1.3}
+#dcalc.min .ck,#dcalc.min .ch2{display:none}
+body.calc-on #list,body.calc-on #res{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+body.calc-on [data-calc]{text-decoration:underline dotted;text-decoration-thickness:1px;text-underline-offset:2px}
+.calc-hit{outline:2px solid var(--ac,#2563eb)!important;outline-offset:1px;border-radius:4px;transition:outline-color .3s}

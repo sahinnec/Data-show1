@@ -1,0 +1,31 @@
+/* v38 colours: "+" menu, Settings and the app (home) page buttons. Pure CSS, no layout change. */
+:root{--c1:#2563eb;--c2:#7c3aed;--c3:#0f766e;--c4:#db2777;--c5:#0a8f4d;--c6:#d97706;--c7:#0891b2;--c8:#ea580c}
+/* + button */
+#docPlus i{background:linear-gradient(145deg,#7c3aed,#2563eb 55%,#0891b2)!important;box-shadow:0 6px 16px rgba(91,70,230,.38)!important}
+/* + menu */
+#docAddMenu .scan4 button{--cc:var(--c1);border-color:var(--cc);border-color:color-mix(in srgb,var(--cc) 38%,var(--bd));background:color-mix(in srgb,var(--cc) 9%,var(--card))}
+#docAddMenu .scan4 button b{color:var(--cc)}
+#docAddMenu .scan4 [data-add=qr]{--cc:#2563eb}#docAddMenu .scan4 [data-add=id]{--cc:#7c3aed}#docAddMenu .scan4 [data-add=barcode]{--cc:#0f766e}#docAddMenu .scan4 [data-add=photo]{--cc:#db2777}
+#docAddMenu .scan4 [data-add=file]{--cc:#0a8f4d}#docAddMenu .scan4 [data-add=folder]{--cc:#d97706}#docAddMenu .scan4 [data-add=paste]{--cc:#0891b2}#docAddMenu .scan4 [data-add=card]{--cc:#4f46e5}
+#docAddMenu .scan4 [data-add=note]{--cc:#ca8a04}#docAddMenu .scan4 [data-add=auth]{--cc:#16a34a}#docAddMenu .scan4 [data-add=settings]{--cc:#64748b}#docAddMenu .scan4 [data-add=calc]{--cc:#ea580c}
+/* Settings page */
+#stS .tlh{background:linear-gradient(90deg,rgba(37,99,235,.14),rgba(124,58,237,.12))}
+#stS .tlh b{color:var(--c1)}
+#stS #stB{color:#2563eb;border-color:#2563eb}
+#stS #stR{color:#7c3aed;border-color:#7c3aed}
+#stUp{background:linear-gradient(135deg,#0a8f4d,#0891b2)!important}
+#stL h4,#stA h4{color:#7c3aed;font-weight:700;letter-spacing:.02em}
+#stL label svg{opacity:1!important}
+#stL label:nth-of-type(8n+1) svg{color:#2563eb}#stL label:nth-of-type(8n+2) svg{color:#7c3aed}#stL label:nth-of-type(8n+3) svg{color:#0f766e}#stL label:nth-of-type(8n+4) svg{color:#db2777}
+#stL label:nth-of-type(8n+5) svg{color:#0a8f4d}#stL label:nth-of-type(8n+6) svg{color:#d97706}#stL label:nth-of-type(8n+7) svg{color:#0891b2}#stL label:nth-of-type(8n+8) svg{color:#ea580c}
+/* app (home) page buttons */
+#homeBox .hm-ban button,#homeBox .hm-grid button{--cc:var(--c1)}
+#homeBox .hm-ban i,#homeBox .hm-grid i{background:rgba(37,99,235,.14);background:color-mix(in srgb,var(--cc) 16%,var(--card,#fff))!important;box-shadow:0 0 0 1px color-mix(in srgb,var(--cc) 35%,transparent)!important}
+#homeBox .hm-ban button:nth-child(8n+1),#homeBox .hm-grid button:nth-child(8n+1){--cc:#2563eb}
+#homeBox .hm-ban button:nth-child(8n+2),#homeBox .hm-grid button:nth-child(8n+2){--cc:#7c3aed}
+#homeBox .hm-ban button:nth-child(8n+3),#homeBox .hm-grid button:nth-child(8n+3){--cc:#0f766e}
+#homeBox .hm-ban button:nth-child(8n+4),#homeBox .hm-grid button:nth-child(8n+4){--cc:#db2777}
+#homeBox .hm-ban button:nth-child(8n+5),#homeBox .hm-grid button:nth-child(8n+5){--cc:#0a8f4d}
+#homeBox .hm-ban button:nth-child(8n+6),#homeBox .hm-grid button:nth-child(8n+6){--cc:#d97706}
+#homeBox .hm-ban button:nth-child(8n+7),#homeBox .hm-grid button:nth-child(8n+7){--cc:#0891b2}
+#homeBox .hm-ban button:nth-child(8n+8),#homeBox .hm-grid button:nth-child(8n+8){--cc:#ea580c}

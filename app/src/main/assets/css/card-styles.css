@@ -1,0 +1,26 @@
+#pSel,#pNew,#pMenu,#addB,#files{display:none!important}
+#stS{position:fixed;inset:0;z-index:9991;background:var(--bg,#f4f6fb);color:var(--tx,#111);display:none;flex-direction:column;padding-top:env(safe-area-inset-top)}
+#stS .tlh button{border:1px solid var(--bd,#ccc);background:var(--card,#fff);color:inherit;border-radius:10px;padding:8px 11px;font-size:.85rem}
+#stL{flex:1;overflow:auto;padding:6px 14px 30px}#stL h4{margin:14px 0 4px;font-size:.8rem;color:var(--mut,#778)}
+#stL label{display:flex;gap:10px;align-items:center;padding:9px 4px;border-bottom:1px solid var(--bd,#e3e3e3);font-size:.9rem}
+#stL label svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:.75}
+#cust .tabs [data-t=app]{display:none!important}#stU{padding:10px 14px 0}#stU h4{margin:4px 0;font-size:.8rem;color:var(--mut,#778)}#stU .mut{font-size:.8rem;margin-bottom:8px}#stUp{border:0;background:#2f6fe4;color:#fff;border-radius:10px;padding:10px 16px;font-size:.9rem}
+
+/* ---- Market cards (DSE snapshot) ---- */
+.item.mk{--mkc:#8a93a6;--mkb:rgba(138,147,166,.14);display:block;background:var(--card);color:var(--tx);border:1px solid var(--bd);border-left:5px solid var(--mkc);border-radius:12px;padding:9px 12px 10px;margin:0 0 8px;box-shadow:none}
+.item.mk-up{--mkc:#0e9f6e;--mkb:rgba(14,159,110,.14)}
+.item.mk-dn{--mkc:#e0364c;--mkb:rgba(224,54,76,.14)}
+.item.mk .mk-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.item.mk .mk-id{display:flex;align-items:center;gap:7px;min-width:0}
+.item.mk .mk-code{font-weight:700;font-size:1.08rem;letter-spacing:.01em;overflow-wrap:anywhere}
+.item.mk .mk-cat{font-size:.62rem;font-weight:600;line-height:1;padding:3px 6px;border-radius:6px;background:var(--bd);color:var(--mut)}
+.item.mk .mk-cat.mk-cZ{background:rgba(217,119,6,.16);color:#b45309}
+.item.mk .mk-cat.mk-cB,.item.mk .mk-cat.mk-cN{background:rgba(37,99,235,.13);color:var(--ac)}
+.item.mk .mk-px{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex:none}
+.item.mk .mk-px b{font-size:1.28rem;font-weight:700;line-height:1.05;font-variant-numeric:tabular-nums}
+.item.mk .mk-chg{font-size:.72rem;font-weight:600;color:var(--mkc);background:var(--mkb);padding:2px 7px;border-radius:999px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.item.mk .mk-co{font-size:.76rem;color:var(--mut);margin:1px 0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:62%}
+.item.mk .mk-st{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;border-top:1px solid var(--bd);padding-top:7px}
+.item.mk .mk-st small{display:block;font-size:.62rem;color:var(--mut);margin-bottom:1px}
+.item.mk .mk-st span{font-size:.8rem;font-weight:600;font-variant-numeric:tabular-nums}
+@media (max-width:340px){.item.mk .mk-st{grid-template-columns:repeat(2,minmax(0,1fr))}}
